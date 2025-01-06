@@ -1,4 +1,6 @@
 import React from 'react'
+import Cards from './assets/components/Cards'
+import Footer from './assets/components/Footer'
 import Markies from './assets/components/Markies'
 import Navbar from './assets/components/Navbar'
 import Products from './assets/components/Products'
@@ -14,7 +16,9 @@ function App() {
       <Stripes />
       <Products />
       <Markies />
-    </div>
+      <Cards />
+      <Footer />
+    </div> 
   )
 }
 
