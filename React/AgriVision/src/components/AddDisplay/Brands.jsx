@@ -26,15 +26,11 @@ function Brands() {
     
 ];
 return (
-  <div className="overflow-auto w-full bg-green-400 h-[18vh] mt-5 relative">
+  <div className="w-full bg-zinc-100 h-[17vh] overflow-auto pt-3 relative">
     {/* Wrapper with animation */}
     <div className="flex w-max animate-scroll">
       {data.map((item, index) => (
         <Brand key={index} data={item} />
-      ))}
-      {/* Duplicate for seamless scrolling */}
-      {data.map((item, index) => (
-        <Brand key={index + data.length} data={item} />
       ))}
     </div>
   </div>

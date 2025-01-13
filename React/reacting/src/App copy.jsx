@@ -11,5 +11,3 @@ const [Score,setScore]= useState("Siddharth");
     </div>
   )
 }
-
-export default App

@@ -1,65 +1,53 @@
+import { Routes, Route } from "react-router-dom";
 import React from "react";
-import Ads from "./components/Ads";
-import Categorys from "./components/Categorys";
-import Exclusive from "./components/Exclusive";
-import Home from "./components/Home";
-import Selling from "./components/Selling";
-import SellingOffer from "./components/SellingOffer";
-import Show from "./components/Show";
-import Offers from "./components/Offers";
-import Farmer from "./components/Farmer";
-import Brands from "./components/Brands";
-import Abouts from "./components/Abouts";
-import GrowthAds from "./components/GrowthAds";
-import Stripes from "./components/Stripes";
-import StripesDet from "./components/StripesDet";
-
+import HomePage from "./components/HomePage/HomePage";
+import Login from "./UserInfo/Login";
+import Register from "./UserInfo/Register";
+import OrganicFarm from "./components/Products_variety/OrganicFarm";
+import BioFertilizer from "./components/Products_variety/BioFertilizer";
+import Booster from "./components/Products_variety/Booster";
+import Fertilizer from "./components/Products_variety/Fertilizer";
+import Fungicide from "./components/Products_variety/Fungicide";
+import Herbicide from "./components/Products_variety/Herbicide";
+import Insecticide from "./components/Products_variety/Insecticide";
+import Nutrient from "./components/Products_variety/Nutrient";
+import Pesticide from "./components/Products_variety/Pesticide";
+import ProductDetails from "./components/ProductDetails";
+import ProductDetailsfungi from "./components/ProductDetail/ProductDetailsfungi";
+import ProductDetailsherbi from "./components/ProductDetail/ProductDetailsherbi";
+import ProductDetailsinsect from "./components/ProductDetail/ProductDetailsinsect";
+import ProductDetailsnutri from "./components/ProductDetail/ProductDetailsnutri";
+import ProductDetailspest from "./components/ProductDetail/ProductDetailspest";
+import ProductDetailsorgan from "./components/ProductDetail/ProductDetailsorgan";
+import ProductDetailsbiof from "./components/ProductDetail/ProductDetailsbiof";
+import ProductDetailsboost from "./components/ProductDetail/ProductDetailsboost";
 function App() {
   return (
-    <div className="bg-green-400">
-      {/* Home Screen Their having main navbar and only navbar */}
-      <Home />
-      <br />
-      {/* Ads Screen Their having Images Are Moving */}
-      <Ads />
-      <br />
-      {/* stripe that having condition and some text */}
-      <Stripes />
-      <br />
-      {/* Category Section Their having category of what we sell */}
-      <Exclusive value={"Category"} />
-      <Categorys />
-      <br />
-      {/* Offer Screen  having Offer section in their are some products are on sell only for today */}
-      <Exclusive value={"Today Offer Only"} />
-      <SellingOffer />
-      {/* Fermer Section having farmer image */}
-      <Farmer />
-      {/* Exclusive Screen  having Exclusive product section in their are some products are on Exclusive only for today */}
-      <Exclusive value={"Exclusive Products Of The Day"} />
-      <Show />
-      {/* Offer Screen  having offer on Cards */}
-      <Offers />
-      {/* selling Screen  having best selling product of the day */}
-      <Exclusive value={" Best Selling Of The Day"} />
-      <Selling />
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/signin" element={<Login />} />
+      <Route path="/signup" element={<Register />} />
 
-      <div className="bg-zinc-100 h-10 w-full"/>
-      {/* growth Screen  having growth pesticide recommandation */}
-      <GrowthAds />
-      <div className="bg-green-100 h-10 w-full"/>
+      <Route path="/organFarm" element={<OrganicFarm />} />
+      <Route path="/biofertilizer" element={<BioFertilizer />} />
+      <Route path="/booster" element={<Booster />} />
+      <Route path="/fertilizer" element={<Fertilizer />} />
+      <Route path="/fungicide" element={<Fungicide />} />
+      <Route path="/herbicide" element={<Herbicide />} />
+      <Route path="/insecticide" element={<Insecticide />} />
+      <Route path="/nutrient" element={<Nutrient />} />
+      <Route path="/pesticide" element={<Pesticide />} />
 
-      {/* growth Section  having need for growth products */}
-      <Exclusive value={"Growth Promoters"} />
-      <Show />
-      {/* Brand Section having All brand that are we sell their products */}
-      <Exclusive value={" Brands "} />
-      <Brands />
-      {/* Stripe Detail having they sell to how many and count of product brand  */}
-      <StripesDet />
-      {/* about section having all conditions and links are all stuff are in the about section */}
-      <Abouts />
-    </div>
+      <Route path="/ProductDetails/:id" element={<ProductDetails />} />
+      <Route path="/ProductDetailsfungi/:id" element={<ProductDetailsfungi />} />
+      <Route path="/ProductDetailsherbi/:id" element={<ProductDetailsherbi />} />
+      <Route path="/ProductDetailsinsect/:id" element={<ProductDetailsinsect />} />
+      <Route path="/ProductDetailsnutri/:id" element={<ProductDetailsnutri />} />
+      <Route path="/ProductDetailsorgan/:id" element={<ProductDetailsorgan />} />
+      <Route path="/ProductDetailspest/:id" element={<ProductDetailspest />} />
+      <Route path="/ProductDetailsboost/:id" element={<ProductDetailsboost />} />
+      <Route path="/ProductDetailsbiof/:id" element={<ProductDetailsbiof />} />
+    </Routes>
   );
 }
 

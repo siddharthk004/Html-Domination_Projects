@@ -22,7 +22,7 @@ function Offers() {
   return (
     <div className="flex pb-4 pt-4 border-t-2 border-b-2 border-green-800">
       {data.map((item, index) => (
-        <Offer data={item} />
+        <Offer data={item} index = {index} key={index} />
       ))}
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import Ad from "./Ads/Ad";
+import Ad from "./Ad";
 
 function Ads() {
   

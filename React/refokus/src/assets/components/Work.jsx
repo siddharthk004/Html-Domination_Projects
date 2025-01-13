@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 function Work() {
-  // State to track active images
+  // State to track active images and hiding the first image
   const [activeIndex, setActiveIndex] = useState(-1); // Start with no images visible
+  const [hideFirstImage, setHideFirstImage] = useState(false);
 
   const images = [
     {
@@ -37,12 +38,6 @@ function Work() {
     },
   ];
 
-  // Reset activeIndex when the component is mounted
-  useEffect(() => {
-    setActiveIndex(-1); // Reset the activeIndex to hide all images
-  }, []);
-
-  // Handle scroll to update activeIndex
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -54,6 +49,10 @@ function Work() {
       );
 
       setActiveIndex(newIndex);
+
+      // Check if the last image is fully visible
+      const lastImagePosition = newIndex === images.length - 1;
+      setHideFirstImage(lastImagePosition);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -66,34 +65,34 @@ function Work() {
   }, [images.length]);
 
   return (
-    <>
-      <div className="w-full relative items-center justify-center text-center mt-20">
-        <h1
-          style={{ textShadow: "0 0 0.03em #dadada" }}
-          className="text-9xl text-[2000%]"
-        >
-          WORK
-        </h1>
-        {/* Image Container */}
-        <div className="absolute top-4 w-[26%] left-[37%] h-full z-10">
-          {images.map((elem, ind) =>
-            ind <= activeIndex ? (
-              <img
-                key={ind}
-                className="w-50 h-59 rounded-lg -translate-y-[50%] -translate-x-[50%] absolute transition-opacity duration-300"
-                style={{
-                  top: elem.top,
-                  left: elem.left,
-                  opacity: ind === activeIndex ? 1 : 0.8,
-                }}
-                src={elem.url}
-                alt=""
-              />
-            ) : null
-          )}
-        </div>
+    <div className="w-full relative items-center justify-center text-center mt-20">
+      <h1
+        style={{ textShadow: "0 0 0.03em #dadada" }}
+        className="text-9xl text-[2000%]"
+      >
+        WORK
+      </h1>
+      {/* Image Container */}
+      <div className="absolute top-4 w-[26%] left-[37%] h-full z-10">
+        {images.map((elem, ind) =>
+          ind <= activeIndex ? (
+            <img
+              key={ind}
+              className={`w-50 h-59 rounded-lg -translate-y-[50%] -translate-x-[50%] absolute transition-opacity duration-300 ${
+                hideFirstImage && ind === 0 ? "hidden" : ""
+              }`}
+              style={{
+                top: elem.top,
+                left: elem.left,
+                opacity: ind === activeIndex ? 1 : 0.5,
+              }}
+              src={elem.url}
+              alt=""
+            />
+          ) : null
+        )}
       </div>
-    </>
+    </div>
   );
 }
 

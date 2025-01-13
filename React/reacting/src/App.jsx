@@ -1,23 +1,66 @@
-import React, { useState } from "react";
-import Card from "./components/Card";
+import React from "react";
+import axios from "axios";
+import { useState } from "react";
+import {Link, Route, Routes} from 'react-router-dom'
+import Home from "./component/Home";
+import Show from "./component/Show";
+import About from "./component/About";
 
 function App() {
-  const arr = [
-    {name: "john",prof: "painter",desc : "Well Painter",img: "https://media.istockphoto.com/id/1457344216/photo/confident-painter-standing-with-crossed-arms-by-holding-paint-brush-by-looking-camera-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=poYfq5xKNW4JtVqVeCsdvaQ0HeRD4M8CxUWSwHu6P80="},
-    {name: "Rahul",prof: "Developer",desc : "Well Developer",img: "https://media.istockphoto.com/id/1149529035/photo/this-looks-interesting.webp?a=1&b=1&s=612x612&w=0&k=20&c=WBoEsW34ZoDhvrdadrU9jl1b6Gxc2B-tXtUnPT_FVR8="},
-    {name: "Prakash",prof: "Plumber",desc : "Well Plumber",img: "https://media.istockphoto.com/id/1365364736/photo/plumber-or-repairman-talking-on-mobile-phone-with-colleague-while-fixing-pipe-using-wrench.webp?a=1&b=1&s=612x612&w=0&k=20&c=45HMUjFzwT7WWjdDdF1Qxwtp3MBnJJJZJKtFCOEkb2Y="},
-    {name: "Ram",prof: "Artist",desc : "Well Artist",img: "https://images.unsplash.com/photo-1658314756129-5b27f344b65b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fEFydGlzdCUyMG1hbW58ZW58MHx8MHx8fDA%3D"},
-    {name: "Kisan",prof: "Farmer",desc : "Well Farmer",img: "https://plus.unsplash.com/premium_photo-1661411325413-98a5ff88e8e4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fEZBcm1lcnxlbnwwfHwwfHx8MA%3D%3D="},
-  ]
+  const [product, setProduct] = useState([]);
+  const GetProduct = () => {
+    const api = "https://dummyjson.com/products";
+    axios
+      .get(api)
+      .then((products) => {
+        console.log(products.data);
+        setProduct(products.data.products);
+      })
+      .catch((err) => console.log(err));
+  };
+  // const AddProducts = () => {
+  //   const api = "https://fakestoreapi.com/products";
+  //   axios
+  //     .post(api, {
+  //       brand: "sony",
+  //       category: "audio",
+  //       color: "silver",
+  //       description:
+  //         "Digital noise cancelling : Industry leading Active Noise Cancellation (ANC) lends a personalized, virtually soundproof experience at any situation\r\nHi-Res Audio : A built-in amplifier integrated in HD Noise Cancelling Processor QN1 realises the best-in-class signal-to-noise ratio and low distortion for portable devices.\r\nDriver Unit : Powerful 40-mm drivers with Liquid Crystal Polymer (LCP) diaphragms make the headphones perfect for handling heavy beats and can reproduce a full range of frequencies up to 40 kHz.\r\nVoice assistant : Alexa enabled (In-built) for voice access to music, information and more. Activate with a simple touch. Frequency response: 4 Hz-40,000 Hz",
+  //       discount: 11,
+  //       id: 51,
+  //       image:
+  //         "https://storage.googleapis.com/fir-auth-1c3bc.appspot.com/1692947383286-714WUJlhbLS._SL1500_.jpg",
+  //       model: "WH-1000XM3",
+  //       price: 773,
+  //       title:
+  //         "Sony WH-1000XM3 Bluetooth Wireless Over Ear Headphones with Mic (Silver)",
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
   return (
-    <>
-      <div className="w-full h-screen bg-zinc-300 items-center justify-center flex gap-4">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
-    </>
+    <div className="pt-[5%] pl-[5%]">
+      <nav className="flex justify-center gap-10">
+        <Link to="/">Home</Link>
+        <Link to="/show">Show</Link>
+        <Link to="/about">About</Link>
+      </nav>
+      <hr />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/show" element={<Show />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+
+      
+      {/* <button onClick={AddProducts} className="px-5 rounded py-2 bg-blue-400">
+        Add Products
+      </button> */}
+    </div>
   );
 }
 
