@@ -38,7 +38,6 @@ function Navbar() {
 
   // Use useEffect to call search function dynamically whenever `query` changes
   useEffect(() => {
-    Axios().get('/user/profile').then(response => { setname(response.data); }).catch(error=>{console.error(error);});
     console.log(name);
     if (query) {
       handleSearch();
@@ -65,13 +64,13 @@ function Navbar() {
             <h1 className="text-2xl font-lightbold text-zinc-800">Home</h1>
           </Link>
 
-          <div className="pl-9 pt-3">
+          <Link to="/profileSection" className="pl-9 pt-3">
             <img
               className="rounded-3xl h-12"
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1DIpd1kz9a3U1oAhsaqV9SSWCEuBl67kTfw&s"
             />
-            <h1 className="text-2xl font-lightbold text-zinc-800">{name}</h1>
-          </div>
+            <h1 className="text-2xl font-lightbold text-zinc-800">Profile</h1>
+          </Link>
 
           <Link to="/" className="pl-9 pt-3">
             <img
@@ -89,13 +88,13 @@ function Navbar() {
             <h1 className="text-2xl font-lightbold text-zinc-800">Pesticide</h1>
           </Link>
 
-          <div className="pl-9 pt-3">
+          <Link to="/help" className="pl-9 pt-3">
             <img
               className="rounded-3xl h-12"
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLZI5oiEgRPoflsOtMwT-ofEsdPn6gUKk5dg&s"
             />
             <h1 className="text-2xl font-lightbold text-zinc-800">Help</h1>
-          </div>
+          </Link>
         </div>
         <div className="mr-10 w-[160vh] max-w-md h-12 mt-7 flex gap-5">
           <input

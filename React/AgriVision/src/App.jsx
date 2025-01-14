@@ -21,6 +21,10 @@ import ProductDetailspest from "./components/ProductDetail/ProductDetailspest";
 import ProductDetailsorgan from "./components/ProductDetail/ProductDetailsorgan";
 import ProductDetailsbiof from "./components/ProductDetail/ProductDetailsbiof";
 import ProductDetailsboost from "./components/ProductDetail/ProductDetailsboost";
+import Profile from "./components/Home/Profile";
+import HelpCenter from "./components/Home/HelpCenter";
+import EditProfile from "./components/Home/EditProfile";
+import WishList from "./components/UserInfoPages/WishList";
 function App() {
   return (
     <Routes>
@@ -37,6 +41,11 @@ function App() {
       <Route path="/insecticide" element={<Insecticide />} />
       <Route path="/nutrient" element={<Nutrient />} />
       <Route path="/pesticide" element={<Pesticide />} />
+
+      <Route path="/profileSection" element={<Profile />} />
+      <Route path="/help" element={<HelpCenter />} />
+      <Route path="/wishlistView" element={<WishList />} />
+      <Route path="/editprofile" element={<EditProfile />} />
 
       <Route path="/ProductDetails/:id" element={<ProductDetails />} />
       <Route path="/ProductDetailsfungi/:id" element={<ProductDetailsfungi />} />

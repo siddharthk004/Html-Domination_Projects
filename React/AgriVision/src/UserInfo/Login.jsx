@@ -14,33 +14,30 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (username === '' || password === '') {
-      toast.error('Please enter both username and password',{autoClose:2000,});
-      return;
+        toast.error('Please enter both username and password', { autoClose: 2000 });
+        return;
     }
 
     try {
-      // Make the API call using the custom Axios instance
-      const response = await Axios().post("/user/login", {
-        username,
-        password,
-      });
+        const response = await Axios().post("/user/login", { username, password });
 
-      if (response.status === 200) {
-        // Navigate to the dashboard or home after successful login
-       
-        
-        navigate('/'); // Adjust this route to where you want to navigate
-      } else {
-        toast.error('Invalid username or password');
-      }
+        if (response.status === 200) {
+            // Save email in localStorage (assuming API response includes an email field)
+            localStorage.setItem('email', response.data); 
+
+
+            // Navigate to another page (e.g., Home or Profile)
+            navigate('/');
+        } else {
+            toast.error('Invalid username or password');
+        }
     } catch (error) {
-      // Handle any errors from the API call
-      console.error('Error during login:', error);
-      toast.error('Something went wrong. Please try again.');
+        console.error('Error during login:', error);
+        toast.error('Something went wrong. Please try again.');
     }
-  };
+};
+
 
   return (
     <div>

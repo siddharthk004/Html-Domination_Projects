@@ -3,8 +3,46 @@ import { FiHeart } from "react-icons/fi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { CgArrowTopRightR } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import Axios from "../../Axios";
+import { useState } from "react";
 
 function Cardorgan({data,index}) {
+  const [isWishlistAdded, setIsWishlistAdded] = useState(false); // Track if the product is in the wishlist
+
+  const addToWishlist = async () => {
+    if (isWishlistAdded) return; // Prevent multiple clicks
+
+    const email = localStorage.getItem("email");
+    const wishlistData = {
+      productname: data.productName,
+      productcompanyname: data.productCompanyName,
+      productimage: data.productImage,
+      beforediscount: data.beforediscount,
+      afterdiscount: data.afterdiscount,
+      discount: data.discount,
+    };
+    
+
+    try {
+      const response = await Axios().post(
+        `/user/wishlist`, // API endpoint
+        wishlistData, // Request body
+        {
+          params: { email }, // Query parameters
+          headers: {
+            "Content-Type": "application/json", // Ensure the request is JSON
+          },
+        }
+      );
+
+      // Handle success
+      console.log("Response:", response.data);
+      setIsWishlistAdded(true); // Mark product as added to the wishlist  
+    } catch (error) {
+      // Handle error
+      console.error("Error adding to wishlist:", error.response?.data || error.message);
+    }
+  };
   return (
     <div key={index} className="p-2 pt-5 pl-6">
       <Link to={`/ProductDetailsorgan/${data.id}`}>
@@ -14,9 +52,15 @@ function Cardorgan({data,index}) {
           <div className=" h-8 bg-yellow-300 w-[130px] overflow-hidden rounded-lg">
             <h1 className="text-sm p-[5px] ml-1 font-lightbold ">{data.discount}% OFF</h1>
           </div>
-          <div className="h-8 w-[80px] ml-[13vh] mt-2 rounded-xl">
-            <FiHeart className="h-10 w-8 ml-1" />
-          </div>
+          <button
+              onClick={addToWishlist}
+              className={`h-8 w-[80px] ml-[13vh] mt-2 rounded-xl ${
+                isWishlistAdded ? "bg-red-500 text-white cursor-not-allowed" : ""
+              }`}
+              disabled={isWishlistAdded} // Disable button if already added
+            >
+              <FiHeart className="h-10 w-8 ml-1" />
+            </button>
         </div>
         <div className="h-[15vh] w-[18vh] ml-10 leading-none">
           <img
