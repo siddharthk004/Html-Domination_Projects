@@ -25,6 +25,9 @@ import Profile from "./components/Home/Profile";
 import HelpCenter from "./components/Home/HelpCenter";
 import EditProfile from "./components/Home/EditProfile";
 import WishList from "./components/UserInfoPages/WishList";
+import Cart from "./components/UserInfoPages/Cart";
+import Payment from "./components/Card/PaymentPage";
+import BuyProduct from "./components/UserInfoPages/BuyProduct";
 function App() {
   return (
     <Routes>
@@ -45,6 +48,9 @@ function App() {
       <Route path="/profileSection" element={<Profile />} />
       <Route path="/help" element={<HelpCenter />} />
       <Route path="/wishlistView" element={<WishList />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/buyproduct" element={<BuyProduct />} />
+      <Route path="/payment" element={<Payment />} />
       <Route path="/editprofile" element={<EditProfile />} />
 
       <Route path="/ProductDetails/:id" element={<ProductDetails />} />

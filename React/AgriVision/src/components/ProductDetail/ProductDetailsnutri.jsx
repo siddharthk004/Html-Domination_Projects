@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Axios from "../../Axios";
 import Home from "../Home";
 import { RiSecurePaymentLine } from "react-icons/ri";
@@ -17,6 +17,54 @@ function ProductDetailsnutri() {
   const [product, setproduct] = useState([]);
   const [count, setcount] = useState(1);
   const { id } = useParams();
+  
+  const navigate = useNavigate();
+
+  const checkEmailAndRedirect = () => {
+    const email = localStorage.getItem("email");
+    if (!email) {
+      navigate("/signin"); // Redirect to login if email is missing
+      return null;
+    }
+    return email;
+  };
+  
+  const addToCart = async () => {
+    const email = checkEmailAndRedirect();
+    if (!email || isCartAdded) return; // Prevent execution if email is missing or already added
+
+    const cartData = {
+      productname: data?.productName || "Unknown",
+      productcompanyname: data?.productCompanyName || "Unknown",
+      productimage: data?.productImage || "placeholder.jpg",
+      beforediscount: data?.beforediscount || 0,
+      afterdiscount: data?.afterdiscount || 0,
+      discount: data?.discount || 0,
+    };
+
+    try {
+      const response = await Axios().post(
+        `/user/cart`,
+        cartData,
+        {
+          params: { email }, // Pass email as a query parameter
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Response:", response.data);
+      setIsCartAdded(true); // Mark product as added to the cart
+    } catch (error) {
+      console.error("Error adding to cart:", error.response?.data || error.message);
+    }
+  };
+
+  const handlePayment = () => {
+    const email = checkEmailAndRedirect();
+      if (!email) return; // Prevent execution if email is missing or already added
+    navigate("/payment", { state: { count, productname:product.productName, afterdiscount:product.afterdiscount } });
+  };
   const getsingleProduct = async () => {
     try {
       const res = await Axios().get(`/user/ViewNutrient/${id}`);
@@ -97,12 +145,12 @@ function ProductDetailsnutri() {
           </h1>
 
           <div className="flex mt-6">
-            <div className="rounded-md bg-green-700 text-xl text-white h-13 w-30 mr-6 flex border-green-500 border">
+            <button onClick={addToCart} className="rounded-md bg-green-700 text-xl text-white h-13 w-30 mr-6 flex border-green-500 border">
               <h1 className="mt-2 ml-3 mr-3 font-bold">Add to Cart</h1>
-            </div>
-            <div className="rounded-md bg-blue-600 text-white h-12 text-xl w-30 flex border-green-500 border">
+            </button>
+            <button onClick={handlePayment} className="rounded-md bg-blue-600 text-white h-12 text-xl w-30 flex border-green-500 border">
               <h1 className="mt-2 ml-3 mr-3 font-bold">Buy Now</h1>
-            </div>
+            </button>
           </div>
         </div>
       </div>

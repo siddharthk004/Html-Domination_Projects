@@ -61,12 +61,14 @@ function Profile() {
     <div className="w-full h-[93.1vh]">
       <Home />
       <div className="mt-5 h-[30vh]">
-        <div className="h-[95%] p-4 w-[30vh] ml-[40%]">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT95gUb5ESW97Bw9C7SL5Kbr1lufVqp5OGMVQ&s"
-            className="h-full w-full rounded-full"
-            alt="Profile"
-          />
+      <div className="h-[95%] p-4 w-[30vh] ml-[40%]">
+          {profileData.image && (
+            <img
+              src={profileData.image}
+              className="h-full w-full rounded-full"
+              alt="Profile"
+            />
+          )}
         </div>
       </div>
       <div>
