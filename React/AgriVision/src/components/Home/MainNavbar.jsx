@@ -45,8 +45,8 @@ function MainNavbar() {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-black text-white shadow-md z-50">
-      <div className="pl-2 pr-6 bg-green-800 h-[15%] w-full text-white flex justify-between">
+    <div className="fixed top-0 left-0 justify-between bg-black text-white shadow-md z-50 ">
+      <div className="pl-2 pr-6 bg-green-800 h-[15%] w-screen text-white flex justify-between">
         {/* Left Section */}
         <div className="flex gap-4">
           <button className="flex mt-4" onClick={() => handleClick()}>

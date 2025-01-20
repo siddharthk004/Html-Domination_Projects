@@ -99,12 +99,12 @@ function Cardherbi({data,index}) {
 
 
   return (
-    <div key={index} className="p-2 pt-5 pl-6">
+    <div key={index} className="p-2 pt-5 pl-2">
       <div>
       
-      <div className="h-[35vh] w-[26vh] bg-green-100 rounded-3xl border border-green-400 shadow-2xl">
+      <div className="h-[100%] w-[90%] bg-green-100 rounded-3xl border border-green-400 shadow-2xl">
         <div className="flex m-[5px]">
-          <div className=" h-8 bg-yellow-300 w-[130px] overflow-hidden rounded-lg">
+          <div className=" h-8 bg-yellow-300 w-[50%] overflow-hidden rounded-lg">
             <h1 className="text-sm p-[5px] ml-1 font-lightbold ">{data.discount}% OFF</h1>
           </div>
           <button
@@ -122,15 +122,16 @@ function Cardherbi({data,index}) {
           <img
             src={data.productImage}
             alt="Product Image"
-            className="w-[16vh] h-[15vh] rounded-3xl"
+            className="w-[60%] ml-[16%] h-[15vh] rounded-3xl"
           />
         </div>
         <h1 className="text-xl m-2 font-semibold leading-none text-center">{data.productName}</h1>
         <h1 className="text-sm text-center leading-none">{data.productCompanyName}</h1>
-        <h1 className="text-lg  mb-2 ml-20 font-bold text-green-700">
+        <h1 className="text-lg  mb-2 text-center font-bold text-green-700">
           {data.afterdiscount} RS<s className="ml-3 text-sm text-black">{data.beforediscount} Rs</s>
         </h1></Link>
-        <div className="flex gap-5 ml-9 mt-2 text-green-900">
+        <div className="w-[140%]">
+        <div className="flex gap-5 mb-2 w-[70%] justify-center mt-2 text-green-900">
         <button onClick={addToCart} 
           className={`rounded-md bg-green-300 h-10 w-20 flex border-green-500 border ${
               isCartAdded
@@ -145,6 +146,7 @@ function Cardherbi({data,index}) {
             <CgArrowTopRightR className="h-10 w-7 text-sm ml-1" />
             <h1 className="mt-2 ml-2 font-bold">Buy</h1>
           </button>
+        </div>
         </div>
       </div>
       </div>

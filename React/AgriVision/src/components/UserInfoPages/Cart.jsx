@@ -24,7 +24,9 @@ function Cart() {
           return;
         }
 
-        const response = await Axios().get('/user/ViewAllcart'); // Replace with your actual API endpoint
+        const response = await Axios().get('/user/ViewAllcart', {
+          params: { email }, // Include email as a query parameter
+        });
         setData(response.data); // Set the fetched data in state
       } catch (error) {
         console.error('Error fetching data:', error);

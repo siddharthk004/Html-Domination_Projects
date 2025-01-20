@@ -21,9 +21,12 @@ function WishList() {
           return;
         }
         
-        const response = await Axios().get('/user/ViewAllWishlist'); // Replace with your actual API endpoint
+        const response = await Axios().get('/user/ViewAllWishlist', {
+          params: { email }, // Include email as a query parameter
+        });
         setData(response.data); // Set the fetched data in state
-      } catch (error) {
+      }
+      catch (error) {
         console.error('Error fetching data:', error);
       }
     };

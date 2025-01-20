@@ -90,8 +90,8 @@ const Register = () => {
   return (
     <div>
       <Home />
-      <div className="bg-green-300 w-full h-[83.5vh] pt-4 pl-[50vh] m-auto bg-gradient-to-l from-green-300 via-white to-orange-300">
-        <div className="bg-blue-100 h-[95%] w-[70%] border-2 border-gray-300 rounded-3xl shadow-2xl shadow-zinc-600">
+      <div className="bg-green-300 w-full h-[82vh] pt-4 pl-[50vh] m-auto bg-gradient-to-l from-green-300 via-white to-orange-300">
+        <div className="bg-blue-100 h-[97%] w-[70%] border-2 border-gray-300 rounded-3xl shadow-2xl shadow-zinc-600">
           <h1 className="text-4xl text-center font-bold mb-2 mt-2">Register</h1>
 
           <form onSubmit={handleSubmit}>
@@ -197,7 +197,7 @@ const Register = () => {
             <button
               type="submit"
               disabled={isSubmitting} // Disable button while submitting
-              className=" hover:bg-green-700 hover:text-white bg-green-600 h-14 w-40 m-7 ml-[40%] rounded-3xl text-xl font-bold text-zinc-700"
+              className=" hover:bg-green-700 hover:text-white bg-green-600 h-14 w-40 m-4 ml-[40%] rounded-3xl text-xl font-bold text-zinc-700"
             >
               {isSubmitting ? "Submitting..." : "Submit"}{" "}
               {/* Show loading text */}

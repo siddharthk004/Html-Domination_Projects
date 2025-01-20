@@ -28,6 +28,11 @@ import WishList from "./components/UserInfoPages/WishList";
 import Cart from "./components/UserInfoPages/Cart";
 import Payment from "./components/Card/PaymentPage";
 import BuyProduct from "./components/UserInfoPages/BuyProduct";
+import Aboutus from "./components/About/Aboutus";
+import Faq from "./components/About/Faq";
+import Support from "./components/About/Support";
+import Privacypolicy from "./components/About/Privacypolicys";
+import Privacypolicys from "./components/About/Privacypolicys";
 function App() {
   return (
     <Routes>
@@ -52,6 +57,11 @@ function App() {
       <Route path="/buyproduct" element={<BuyProduct />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/editprofile" element={<EditProfile />} />
+
+      <Route path="/aboutus" element={<Aboutus />} />
+      <Route path="/privacypolicy" element={<Privacypolicys />} />
+      <Route path="/support" element={<Support />} />
+      <Route path="/faq" element={<Faq />} />
 
       <Route path="/ProductDetails/:id" element={<ProductDetails />} />
       <Route path="/ProductDetailsfungi/:id" element={<ProductDetailsfungi />} />

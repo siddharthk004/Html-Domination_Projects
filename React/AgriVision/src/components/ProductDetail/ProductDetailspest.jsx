@@ -16,6 +16,7 @@ import Detail from "../Detail";
 function ProductDetailspest() {
   const [product, setproduct] = useState([]);
   const [count, setcount] = useState(1);
+  const [isCartAdded, setIsCartAdded] = useState(false); // Track if the product is in the cart
   const { id } = useParams();
   
   const navigate = useNavigate();
@@ -34,12 +35,12 @@ function ProductDetailspest() {
     if (!email || isCartAdded) return; // Prevent execution if email is missing or already added
 
     const cartData = {
-      productname: data?.productName || "Unknown",
-      productcompanyname: data?.productCompanyName || "Unknown",
-      productimage: data?.productImage || "placeholder.jpg",
-      beforediscount: data?.beforediscount || 0,
-      afterdiscount: data?.afterdiscount || 0,
-      discount: data?.discount || 0,
+      productname: product?.productname || "Unknown",
+      productcompanyname: product?.productcompanyname || "Unknown",
+      productimage: product?.productimage || "placeholder.jpg",
+      beforediscount: product?.beforediscount || 0,
+      afterdiscount: product?.afterdiscount || 0,
+      discount: product?.discount || 0,
     };
 
     try {
@@ -63,8 +64,10 @@ function ProductDetailspest() {
   const handlePayment = () => {
     const email = checkEmailAndRedirect();
       if (!email) return; // Prevent execution if email is missing or already added
-    navigate("/payment", { state: { count, productname, afterdiscount } });
+    navigate("/payment", { state: { count, productname:product.productName, afterdiscount:product.afterdiscount } });
   };
+
+
   const getsingleProduct = async () => {
     try {
       const res = await Axios().get(`/user/ViewPesticide/${id}`);
@@ -83,30 +86,29 @@ function ProductDetailspest() {
     getsingleProduct();
   }, []);
   return (
-    <div>
+    <div className="h-full">
       <Home />
-      <div className="w-full h-[60vh] flex">
-        <div className="h-[70vh] w-[40vh]"></div>
-        <div className="bg-white h-[70vh]">
+      <div className="w-full justify-center mt-[3%] flex">
+        <div className="h-[20%] ">
           <img src={product.productimage} className="h-full p-10"></img>
         </div>
-        <div className="h-[70vh] w-1/3">
-          <h1 className=" mt-40 text-5xl font-bold">{product.productname}</h1>
-          <h1 className="text-xl mt-5 m-4 font-semibold">
+        <div className="h-[20%] w-1/3">
+          <h1 className=" text-[200%] font-bold">{product.productname}</h1>
+          <h1 className="text-xl mt-1 m-4 font-semibold">
             {product.productcompanyname}
           </h1>
-          <h1 className="flex text-3xl mt-5 m-4 font-semibold text-green-600">
+          <h1 className="flex text-[140%] mt-2 m-4 font-semibold text-green-600">
             {product.afterdiscount}
             <MdCurrencyRupee className="mt-[5px] ml-1" />{" "}
-            <h1 className="ml-2 text-red-400 text-xl flex">
+            <h1 className="ml-2 text-red-400 text-[80%] flex">
               {" "}
               <s>{product.beforediscount}</s>
               <MdCurrencyRupee className="mt-[5px] ml-1" />
             </h1>
           </h1>
-          <h1 className="flex bg-green-300 w-36 font-lightbold h-7 pl-2 rounded-full text-xl">
-            <CiPercent className="mt-1 mr-2" /> Save{" "}
-            {product.beforediscount - product.afterdiscount}
+          <h1 className="flex bg-green-300 w-[17%] font-lightbold h-7 pl-2 rounded-full text-xl">
+            <CiPercent className="mt-1 mr-2" />
+            {  product.beforediscount - product.afterdiscount}
             <MdCurrencyRupee className="mt-[5px] ml-1" />
           </h1>
 
@@ -144,8 +146,12 @@ function ProductDetailspest() {
             In stock, Ready to Ship
           </h1>
 
-          <div className="flex mt-6">
-            <button onClick={addToCart} className="rounded-md bg-green-700 text-xl text-white h-13 w-30 mr-6 flex border-green-500 border">
+          <div className="flex mt-2">
+            <button onClick={addToCart} className={` ${
+              isCartAdded
+                ? "text-green-200 bg-green-100 text-white cursor-not-allowed"
+                : "bg-green-700 text-white"
+            } rounded-md text-xl h-13 w-30 mr-6 flex border-green-500 border`}>
               <h1 className="mt-2 ml-3 mr-3 font-bold">Add to Cart</h1>
             </button>
             <button onClick={handlePayment} className="rounded-md bg-blue-600 text-white h-12 text-xl w-30 flex border-green-500 border">

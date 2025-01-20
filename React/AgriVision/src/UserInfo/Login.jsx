@@ -42,8 +42,8 @@ function Login() {
   return (
     <div>
       <Home />
-      <div className="bg-green-300 w-full h-[83.5vh] pt-40 pl-[80vh] m-auto bg-gradient-to-l from-green-300 via-white to-orange-300">
-        <div className="bg-blue-100 h-[50vh] w-[40vh] border-2 border-gray-300 rounded-3xl shadow-2xl shadow-zinc-600">
+      <div className="bg-green-300 w-full h-[82vh] pt-40 pl-[80vh] m-auto bg-gradient-to-l from-green-300 via-white to-orange-300">
+        <div className="bg-blue-100 h-[80%] w-[40vh] border-2 border-gray-300 rounded-3xl shadow-2xl shadow-zinc-600">
           <h1 className="text-4xl font-bold text-center mt-3">Login</h1>
 
           <form onSubmit={handleSubmit}>

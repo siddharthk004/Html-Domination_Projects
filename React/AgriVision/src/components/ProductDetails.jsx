@@ -82,22 +82,21 @@ function ProductDetails() {
     getsingleProduct();
   }, []);
   return (
-    <div>
+    <div className="h-full">
       <Home />
-      <div className="w-full h-[60vh] flex">
-        <div className="h-[70vh] w-[40vh]"></div>
-        <div className="bg-white h-[70vh]">
+      <div className="w-full justify-center mt-[3%] flex">
+        <div className="h-[20%] ">
           <img src={product.productImage} className="h-full p-10"></img>
         </div>
-        <div className="h-[70vh] w-1/3">
-          <h1 className=" mt-40 text-5xl font-bold">{product.productName}</h1>
-          <h1 className="text-xl mt-5 m-4 font-semibold">
+        <div className="h-[20%] w-1/3">
+          <h1 className=" text-[200%] font-bold">{product.productName}</h1>
+          <h1 className="text-xl mt-1 m-4 font-semibold">
             {product.productCompanyName}
           </h1>
-          <h1 className="flex text-3xl mt-5 m-4 font-semibold text-green-600">
+          <h1 className="flex text-[140%] mt-2 m-4 font-semibold text-green-600">
             {product.afterdiscount}
             <MdCurrencyRupee className="mt-[5px] ml-1" />{" "}
-            <h1 className="ml-2 text-red-400 text-xl flex">
+            <h1 className="ml-2 text-red-400 text-[80%] flex">
               {" "}
               <s>{product.beforediscount}</s>
               <MdCurrencyRupee className="mt-[5px] ml-1" />
@@ -109,7 +108,7 @@ function ProductDetails() {
             <MdCurrencyRupee className="mt-[5px] ml-1" />
           </h1>
 
-          <div className="flex w-60 h-14 border-2 border-zinc-900 mt-10 m-6">
+          <div className="flex w-60 h-14 border-2 border-zinc-900 mt-[4%] m-6">
             <button className="w-1/3 h-full bg-red-200">
               <FaMinus
                 className="w-full h-[3vh] mt-2"
@@ -143,7 +142,7 @@ function ProductDetails() {
             In stock, Ready to Ship
           </h1>
 
-          <div className="flex mt-6">
+          <div className="flex mt-2">
             <button onClick={addToCart} className="rounded-md bg-green-700 text-xl text-white h-13 w-30 mr-6 flex border-green-500 border">
               <h1 className="mt-2 ml-3 mr-3 font-bold">Add to Cart</h1>
             </button>

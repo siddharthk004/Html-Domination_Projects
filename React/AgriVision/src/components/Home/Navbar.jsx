@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "../../Axios";
 import Cardpest from "../Card/Cardpest";
+import MainNavbar from "./MainNavbar";
 
 function Navbar() {
   const [name,setname] = useState('');
@@ -53,8 +54,8 @@ function Navbar() {
   };
 
   return (
-    <div>
-      <div className="mt-[6.9vh] h-27 bg-gradient-to-r from-green-600 via-green-400 to-green-600 flex justify-between">
+    <div className="">
+      <div className="pt-[4%] w-screen h-27 bg-gradient-to-r from-green-600 via-green-400 to-green-600 flex flex-wrap overflow-auto justify-between">
         <div className="flex">
           <Link to="/" className="pl-9 pt-3">
             <img
